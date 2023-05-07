@@ -5,7 +5,6 @@
 #define WINDOW_WIDTH 576
 #define WINDOW_HEIGHT 576
 
-
 const u8 TileMap[24 * 24] = {
     1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
     0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -79,19 +78,19 @@ static void DrawPlayer(SDL_Renderer *Renderer, const Player_t *Player)
     switch (Player->FaceDirection)
     {
     case UP:
-        SourceRect.x = 0; 
+        SourceRect.x = 0;
         SourceRect.y = 24;
         break;
     case DOWN:
-        SourceRect.x = 0; 
+        SourceRect.x = 0;
         SourceRect.y = 0;
         break;
     case LEFT:
-        SourceRect.x = 24; 
+        SourceRect.x = 24;
         SourceRect.y = 24;
         break;
     case RIGHT:
-        SourceRect.x = 24; 
+        SourceRect.x = 24;
         SourceRect.y = 0;
         break;
     }
@@ -213,6 +212,19 @@ static void DrawTileMap(SDL_Renderer *Renderer, const u8 *TileMap)
             printf("Render Result : %s\n", SDL_GetError());
         }
     }
+}
+
+typedef struct
+{
+    i32 code;
+    void *err;
+} Error_t;
+
+Error_t *learn(void)
+{
+    Error_t *err = (Error_t *)malloc(sizeof(Error_t));
+    err->code = 1;
+    return err;
 }
 
 i32 main(i32 argc, i8 **argv)
@@ -381,6 +393,7 @@ i32 main(i32 argc, i8 **argv)
             }
             break;
         }
+
         // // check every one seconds
         if (SDL_GetTicks() - LastTicks >= 1000)
         {
